@@ -1,26 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://localhost:4000/";
 
 
+class App extends Component {
+  state = {
+    reservations: []
+  }
 
-function App() {
-  const [response, setResponse] = useState("");
-
-  useEffect(() => {
+  componentDidMount() {
     const socket = socketIOClient(ENDPOINT);
-    socket.on("FromAPI", data => {
-      setResponse(data);
+    socket.on("reservationEmitChannel", data => {
+      this.setState({
+        reservations: data
+      })
     });
-  }, []);
+  }
 
+  render() {
+    let { reservations } = this.state
+    console.log(reservations)
 
-  return (
-    <h1>
-      It's <time dateTime={response}>{response}</time>
-    </h1>
-  );
+    return (
+      <div>
+        <h1>{Object.keys(reservations).length}</h1>
+      </div>
+    );
+  }
 }
-
 
 export default App;

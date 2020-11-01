@@ -1,16 +1,21 @@
 const userRouter = require('./userRouter')
 const authRouter = require('./authRouter')
+const reservationRouter = require('./reservationRouter')
 
 
 
 const routes = [
     {
+        path: '/api/auth',
+        handler: authRouter
+    },
+    {
         path: '/api/users',
         handler: userRouter
     },
     {
-        path: '/api/auth',
-        handler: authRouter
+        path: '/api/reservations',
+        handler: reservationRouter
     },
     {
         path: '/',

@@ -29,32 +29,9 @@ require('dotenv').config()
 
 const server = http.createServer(app);
 
-const io = socketIo(server);
+global.io = socketIo(server);
+// require('./socket.js')
 
-let interval;
-
-
-io.on("connection", (socket) => {
-    console.log("New client connected");
-    if (interval) {
-        clearInterval(interval);
-    }
-    interval = setInterval(() => {
-        getApiAndEmit(socket)
-    }, 1000);
-    socket.on("disconnect", () => {
-        console.log("Client disconnected");
-        clearInterval(interval);
-    });
-});
-
-
-
-const getApiAndEmit = socket => {
-    const response = new Date();
-    // Emitting a new message. Will be consumed by the client
-    socket.emit("FromAPI", response);
-};
 
 // Database Connection
 mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@reservation-management.fiyr5.mongodb.net/test`, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
