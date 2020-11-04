@@ -1,6 +1,7 @@
 const userRouter = require('./userRouter')
 const authRouter = require('./authRouter')
 const reservationRouter = require('./reservationRouter')
+const tableRouter = require('./tableRouter')
 
 
 
@@ -16,6 +17,10 @@ const routes = [
     {
         path: '/api/reservations',
         handler: reservationRouter
+    },
+    {
+        path: '/api/tables',
+        handler: tableRouter
     },
     {
         path: '/',

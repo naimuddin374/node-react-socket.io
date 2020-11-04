@@ -1,27 +1,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
-const UserModelSchema = new Schema({
-    name: {
+const TableModelSchema = new Schema({
+    tableNumber: {
         type: String,
         required: true,
         trim: true
     },
-    phoneNumber: {
-        type: String,
-        default: null
-    },
-    username: {
-        type: String,
-        required: true,
-    },
-    password: {
-        type: String,
-        require: true,
-    },
     status: {
-        type: Boolean,
-        default: 1
+        type: String,
+        default: 'empty' //empty, book
     },
     createdAt: {
         type: Date,
@@ -29,5 +17,5 @@ const UserModelSchema = new Schema({
     }
 })
 
-const UserModel = mongoose.model('UserModel', UserModelSchema);
-module.exports = UserModel
+const TableModel = mongoose.model('TableModel', TableModelSchema);
+module.exports = TableModel
