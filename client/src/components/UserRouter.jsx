@@ -24,7 +24,7 @@ export default UserRouter;
 
 
 const ProtectedRoutes = () => {
-    let isAuth = false
+    let isAuth = true
 
     return <>
         {isAuth ? <Route path='/admin/' exact component={Dashboard} /> :
